@@ -1,0 +1,55 @@
+CREATE TABLE parent_series(
+  `id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `name` VARCHAR(15) NOT NULL,
+  `url` VARCHAR(200) NOT NULL,
+  `crawl_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP() 	
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE sub_series(
+  `id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `parent_id` INT NOT NULL,
+  `name_cn` VARCHAR(20) NOT NULL,
+  `name_en` VARCHAR(45) NOT NULL, 
+  `url` VARCHAR(200) NOT NULL,
+  `crawl_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP() 	
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE version_level(
+  `id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `sub_series_id` INT NOT NULL,
+  `name` VARCHAR(2) NOT NULL,
+  `level_name` VARCHAR(15) NOT NULL,
+  `url` VARCHAR(200) NOT NULL,
+  `crawl_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP() 	
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE toy(
+  `id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `verison_level_id` INT NOT NULL,
+  `name` VARCHAR(50) NOT NULL,
+  `head_img` VARCHAR(100) NOT NULL,
+  `url` VARCHAR(200) NOT NULL,
+  `limited_mode` VARCHAR(10) NOT NULL,
+  `release_time` VARCHAR(15) NOT NULL,
+  `accessories` VARCHAR(8) NOT NULL,
+  `acoustooptic_effect` VARCHAR(6) NOT NULL,
+  `sizes` VARCHAR(6) NOT NULL,
+  `movable_type` VARCHAR(8) NOT NULL,
+  `material` VARCHAR(6) NOT NULL,
+  `product_company` VARCHAR(20) NOT NULL,
+  `contributor_source` VARCHAR(40) NOT NULL,
+  `crawl_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP()
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE other_imgs(
+  `id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `master_id` INT NOT NULL,
+  `order_num` INT DEFAULT 0 NOT NULL,
+  `type` TINYINT DEFAULT 0 NOT NULL,
+  `path` VARCHAR(200) NOT NULL,
+  `crawl_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP() 	
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;

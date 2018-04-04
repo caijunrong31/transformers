@@ -1,0 +1,169 @@
+-- MySQL dump 10.13  Distrib 5.7.21, for Win32 (AMD64)
+--
+-- Host: localhost    Database: transformers
+-- ------------------------------------------------------
+-- Server version	5.7.21
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `other_imgs`
+--
+
+DROP TABLE IF EXISTS `other_imgs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `other_imgs` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `master_id` int(11) NOT NULL,
+  `order_num` int(11) NOT NULL DEFAULT '0',
+  `type` tinyint(4) NOT NULL DEFAULT '0',
+  `path` varchar(200) NOT NULL,
+  `crawl_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `other_imgs`
+--
+
+LOCK TABLES `other_imgs` WRITE;
+/*!40000 ALTER TABLE `other_imgs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `other_imgs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `parent_series`
+--
+
+DROP TABLE IF EXISTS `parent_series`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `parent_series` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(15) NOT NULL,
+  `url` varchar(200) NOT NULL,
+  `crawl_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `parent_series`
+--
+
+LOCK TABLES `parent_series` WRITE;
+/*!40000 ALTER TABLE `parent_series` DISABLE KEYS */;
+/*!40000 ALTER TABLE `parent_series` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sub_series`
+--
+
+DROP TABLE IF EXISTS `sub_series`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sub_series` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `parent_id` int(11) NOT NULL,
+  `name_cn` varchar(20) NOT NULL,
+  `name_en` varchar(45) NOT NULL,
+  `url` varchar(200) NOT NULL,
+  `crawl_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sub_series`
+--
+
+LOCK TABLES `sub_series` WRITE;
+/*!40000 ALTER TABLE `sub_series` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sub_series` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `toy`
+--
+
+DROP TABLE IF EXISTS `toy`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `toy` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `verison_level_id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `head_img` varchar(100) NOT NULL,
+  `url` varchar(200) NOT NULL,
+  `limited_mode` varchar(10) NOT NULL,
+  `release_time` varchar(15) NOT NULL,
+  `accessories` varchar(8) NOT NULL,
+  `acoustooptic_effect` varchar(6) NOT NULL,
+  `sizes` varchar(6) NOT NULL,
+  `movable_type` varchar(8) NOT NULL,
+  `material` varchar(6) NOT NULL,
+  `product_company` varchar(20) NOT NULL,
+  `contributor_source` varchar(40) DEFAULT NULL,
+  `crawl_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `toy`
+--
+
+LOCK TABLES `toy` WRITE;
+/*!40000 ALTER TABLE `toy` DISABLE KEYS */;
+/*!40000 ALTER TABLE `toy` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `version_level`
+--
+
+DROP TABLE IF EXISTS `version_level`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `version_level` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `sub_series_id` int(11) NOT NULL,
+  `name` varchar(2) NOT NULL,
+  `level_name` varchar(15) NOT NULL,
+  `url` varchar(200) NOT NULL,
+  `crawl_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `version_level`
+--
+
+LOCK TABLES `version_level` WRITE;
+/*!40000 ALTER TABLE `version_level` DISABLE KEYS */;
+/*!40000 ALTER TABLE `version_level` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2018-04-04 13:50:58
